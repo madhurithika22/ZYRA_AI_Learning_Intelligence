@@ -791,7 +791,7 @@ pytest --tb=short                         # Compact failure output
 
 ## 🚢 Deployment
 
-Production deployment configuration is not currently included in this repository. The project runs fully locally using the setup described in [Quick Start](#-quick-start).
+https://zyra-ai-learning-intelligence.vercel.app/
 
 ### Current Local Architecture
 
@@ -877,10 +877,4 @@ Phase 10 — Observability & Scale       📋  Caching, background tasks, monito
 
 ---
 
-## 📄 License
-
-No license has been specified for this project yet.
-
----
-
-**Authors:** Girikannan M P, Madhu Rithika R K, Raj Moorthy
+**Authors:** Girikannan M P, Madhu Rithika R K, Raj Moorthy B
