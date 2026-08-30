@@ -1,0 +1,107 @@
+# =========================
+# Operating System
+# =========================
+
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# =========================
+# Environment / Secrets
+# =========================
+
+.env
+.env.*
+!.env.example
+
+# =========================
+# Node / Frontend
+# =========================
+
+node_modules/
+.next/
+out/
+dist/
+build/
+coverage/
+.turbo/
+.cache/
+
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# =========================
+# Python / Backend
+# =========================
+
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+.venv/
+venv/
+env/
+
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# =========================
+# IDE / Editor
+# =========================
+
+.vscode/
+.idea/
+
+# Antigravity / agent-local state
+.agents/local/
+
+# =========================
+# Testing / Reports
+# =========================
+
+playwright-report/
+test-results/
+htmlcov/
+
+# =========================
+# Logs
+# =========================
+
+*.log
+logs/
+
+# =========================
+# Local databases / artifacts
+# =========================
+
+*.sqlite
+*.sqlite3
+
+# =========================
+# Temporary files
+# =========================
+
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# =========================
+# Local PostgreSQL data
+# =========================
+
+infra/postgres/data/
+
+# =========================
+# Alembic local artifacts
+# =========================
+
+apps/api/alembic/__pycache__/

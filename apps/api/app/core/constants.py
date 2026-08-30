@@ -1,0 +1,60 @@
+"""Core domain constants for Adaptive Learning Intelligence Engine."""
+
+# Question Difficulty Scale (Interpretable Range: 1.0 to 5.0)
+DIFFICULTY_INTRODUCTORY: float = 1.0
+DIFFICULTY_BASIC: float = 2.0
+DIFFICULTY_INTERMEDIATE: float = 3.0
+DIFFICULTY_ADVANCED: float = 4.0
+DIFFICULTY_EXPERT: float = 5.0
+
+DIFFICULTY_MIN: float = 1.0
+DIFFICULTY_MAX: float = 5.0
+
+# Question Types Supported
+QUESTION_TYPE_MULTIPLE_CHOICE: str = "multiple_choice"
+QUESTION_TYPE_SHORT_ANSWER: str = "short_answer"
+QUESTION_TYPE_CODING: str = "coding"
+QUESTION_TYPE_SCENARIO: str = "scenario"
+
+VALID_QUESTION_TYPES: set[str] = {
+    QUESTION_TYPE_MULTIPLE_CHOICE,
+    QUESTION_TYPE_SHORT_ANSWER,
+    QUESTION_TYPE_CODING,
+    QUESTION_TYPE_SCENARIO,
+}
+
+# Diagnostic Termination Criteria Defaults
+DEFAULT_MAX_DIAGNOSTIC_QUESTIONS: int = 10
+TARGET_SKILL_CONFIDENCE_THRESHOLD: float = 0.75
+
+# Diagnostic Session Statuses
+SESSION_STATUS_NOT_STARTED: str = "not_started"
+SESSION_STATUS_IN_PROGRESS: str = "in_progress"
+SESSION_STATUS_COMPLETED: str = "completed"
+SESSION_STATUS_ABANDONED: str = "abandoned"
+
+VALID_SESSION_STATUSES: set[str] = {
+    SESSION_STATUS_NOT_STARTED,
+    SESSION_STATUS_IN_PROGRESS,
+    SESSION_STATUS_COMPLETED,
+    SESSION_STATUS_ABANDONED,
+}
+
+# Learning Path Strategies
+STRATEGY_FASTEST: str = "FASTEST"
+STRATEGY_BALANCED: str = "BALANCED"
+STRATEGY_DEEP_MASTERY: str = "DEEP_MASTERY"
+STRATEGY_PROJECT_FIRST: str = "PROJECT_FIRST"
+
+VALID_PATH_STRATEGIES: set[str] = {
+    STRATEGY_FASTEST,
+    STRATEGY_BALANCED,
+    STRATEGY_DEEP_MASTERY,
+    STRATEGY_PROJECT_FIRST,
+}
+
+# Learning Path Statuses
+PATH_STATUS_DRAFT: str = "draft"
+PATH_STATUS_ACTIVE: str = "active"
+PATH_STATUS_COMPLETED: str = "completed"
+PATH_STATUS_ARCHIVED: str = "archived"

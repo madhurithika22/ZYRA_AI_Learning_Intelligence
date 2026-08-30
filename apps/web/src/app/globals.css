@@ -1,0 +1,297 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    /* ==================================================
+       EXACT LIGHT THEME PALETTE SPECIFICATION
+       ================================================== */
+    --background: #F2F2F2;          /* Soft Gray */
+    --surface: #FCFAF9;             /* Cream White */
+    --surface-elevated: #FCFAF9;    /* Cream White */
+    --subtle: #E9E0D8;              /* Warm Beige (Surface Alt) */
+
+    --text-primary: #251B18;         /* Dark Brown */
+    --text-secondary: #77696F;       /* Muted Mauve Gray */
+    --text-muted: #77696F;           /* Muted Mauve Gray */
+
+    --border: #E9E0D8;               /* Warm Beige */
+    --border-subtle: #E9E0D8;
+    --border-hover: #D8A284;         /* Warm Peach */
+    --border-focus: #978BAD;         /* Deep Lavender */
+
+    --accent-primary: #978BAD;       /* Primary — Deep Lavender */
+    --accent-primary-light: #B9B0D3; /* Soft Lavender */
+    --accent-primary-pale: #D7D1E3;  /* Light Lilac */
+
+    --accent-secondary: #C48364;     /* Secondary — Terracotta */
+    --accent-secondary-light: #D8A284;/* Warm Peach */
+
+    --accent-sky: #2591C0;           /* Accent Blue — Soft Cyan Blue */
+    --accent-mint: #199160;          /* Success — Green */
+    --accent-rose: #C48364;          /* Terracotta */
+    --accent-amber: #D8A284;         /* Warm Peach */
+
+    /* Subtle Accent Backgrounds */
+    --accent-primary-subtle: rgba(151, 139, 173, 0.12);
+    --accent-sky-subtle: rgba(37, 145, 192, 0.12);
+    --accent-mint-subtle: rgba(25, 145, 96, 0.12);
+    --accent-rose-subtle: rgba(196, 131, 100, 0.12);
+    --accent-amber-subtle: rgba(216, 162, 132, 0.12);
+
+    /* Backward compatibility aliases */
+    --bg-app: var(--background);
+    --bg-surface: var(--surface);
+    --bg-surface-elevated: var(--surface-elevated);
+    --bg-subtle: var(--subtle);
+    --accent-indigo: var(--accent-primary);
+
+    /* Spacing & Radius Tokens */
+    --space-4: 0.25rem;
+    --space-8: 0.5rem;
+    --space-12: 0.75rem;
+    --space-16: 1rem;
+    --space-20: 1.25rem;
+    --space-24: 1.5rem;
+    --space-32: 2rem;
+    --space-40: 2.5rem;
+    --space-48: 3rem;
+    --space-64: 4rem;
+
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --radius-2xl: 1.5rem;
+    --radius-full: 9999px;
+
+    --shadow-xs: 0 1px 2px 0 rgba(37, 27, 24, 0.04);
+    --shadow-sm: 0 1px 3px 0 rgba(37, 27, 24, 0.06), 0 1px 2px -1px rgba(37, 27, 24, 0.04);
+    --shadow-md: 0 4px 6px -1px rgba(37, 27, 24, 0.06), 0 2px 4px -2px rgba(37, 27, 24, 0.04);
+    --shadow-lg: 0 10px 15px -3px rgba(37, 27, 24, 0.06), 0 4px 6px -4px rgba(37, 27, 24, 0.04);
+    --shadow-xl: 0 20px 25px -5px rgba(37, 27, 24, 0.08), 0 8px 10px -6px rgba(37, 27, 24, 0.04);
+
+    --duration-fast: 120ms;
+    --duration-normal: 180ms;
+    --duration-slow: 280ms;
+    --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+    --transition-fast: all var(--duration-fast) var(--ease-standard);
+    --transition-normal: all var(--duration-normal) var(--ease-standard);
+    --transition-slow: all var(--duration-slow) var(--ease-standard);
+
+    --font-display-xl: clamp(3rem, 5vw + 1.5rem, 4.5rem);
+    --font-display: clamp(2.25rem, 3.5vw + 1rem, 3rem);
+    --font-h1: clamp(1.75rem, 2.5vw + 0.875rem, 2.25rem);
+    --font-h2: clamp(1.375rem, 1.8vw + 0.75rem, 1.75rem);
+    --font-h3: clamp(1.125rem, 1.2vw + 0.625rem, 1.375rem);
+    --font-body-lg: 1.125rem;
+    --font-body: 1rem;
+    --font-body-sm: 0.875rem;
+    --font-caption: 0.75rem;
+
+    --lh-display-xl: 1.08;
+    --lh-display: 1.12;
+    --lh-h1: 1.18;
+    --lh-h2: 1.24;
+    --lh-h3: 1.28;
+    --lh-body-lg: 1.6;
+    --lh-body: 1.5;
+    --lh-body-sm: 1.5;
+    --lh-caption: 1.4;
+
+    --tracking-tight: -0.025em;
+    --tracking-snug: -0.015em;
+    --tracking-normal: 0em;
+    --tracking-wide: 0.025em;
+    --tracking-wider: 0.05em;
+  }
+
+  .dark {
+    /* ==================================================
+       DARK THEME PALETTE (Warm Lavender Charcoal Theme)
+       Adapted from Light Palette for Dark Mode Elegance
+       ================================================== */
+    --background: #18161D;          /* Deep Warm Lavender Charcoal */
+    --surface: #221F28;             /* Warm Surface Card */
+    --surface-elevated: #2A2632;    /* Elevated Warm Surface Card */
+    --subtle: #332D3B;              /* Subtle Warm Surface/Hover */
+
+    --text-primary: #F3EFEA;        /* Warm Off-White / Soft Cream */
+    --text-secondary: #C2B9C5;      /* Soft Mauve Lilac */
+    --text-muted: #8E8694;          /* Muted Mauve */
+
+    --border: #36303E;              /* Warm Border */
+    --border-subtle: #36303E;
+    --border-hover: #4A4256;
+    --border-focus: #B9B0D3;
+
+    --accent-primary: #B9B0D3;      /* Primary — Soft Lavender (Vibrant in Dark) */
+    --accent-primary-bright: #D7D1E3;/* Primary Bright — Light Lilac */
+    --accent-secondary: #D8A284;    /* Secondary — Warm Peach */
+
+    --accent-sky: #63B8F4;          /* Soft Cyan Blue */
+    --accent-mint: #35C99B;         /* Success — Green */
+    --accent-rose: #E88B7B;          /* Warm Terracotta Rose */
+    --accent-amber: #E5B580;         /* Warm Peach Gold */
+
+    /* Subtle Accent Backgrounds */
+    --accent-primary-subtle: rgba(185, 176, 211, 0.15);
+    --accent-sky-subtle: rgba(99, 184, 244, 0.15);
+    --accent-mint-subtle: rgba(53, 201, 155, 0.15);
+    --accent-rose-subtle: rgba(232, 139, 123, 0.15);
+    --accent-amber-subtle: rgba(229, 181, 128, 0.15);
+
+    --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.5), 0 1px 2px -1px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.65), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  transition: background-color var(--duration-normal) var(--ease-standard), color var(--duration-normal) var(--ease-standard);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.85;
+}
+
+select, option {
+  background-color: var(--surface);
+  color: var(--text-primary);
+}
+
+.dark select, .dark option {
+  background-color: var(--surface-elevated);
+  color: var(--text-primary);
+}
+
+select:focus, option:hover, option:focus {
+  background-color: var(--subtle);
+  color: var(--text-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Design Token Utility Classes */
+.bg-app, .bg-background { background-color: var(--background); }
+.bg-surface { background-color: var(--surface); }
+.bg-surface-elevated { background-color: var(--surface-elevated); }
+.bg-subtle { background-color: var(--subtle); }
+
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+
+.border-default, .border-subtle { border-color: var(--border); }
+.border-hover { border-color: var(--border-hover); }
+.border-focus { border-color: var(--border-focus); }
+
+/* Accent text tokens */
+.text-accent-primary, .text-accent-indigo { color: var(--accent-primary); }
+.text-accent-sky { color: var(--accent-sky); }
+.text-accent-mint { color: var(--accent-mint); }
+.text-accent-rose { color: var(--accent-rose); }
+.text-accent-amber { color: var(--accent-amber); }
+
+/* Accent background tokens */
+.bg-accent-primary, .bg-accent-indigo { background-color: var(--accent-primary); }
+.bg-accent-sky { background-color: var(--accent-sky); }
+.bg-accent-mint { background-color: var(--accent-mint); }
+.bg-accent-rose { background-color: var(--accent-rose); }
+.bg-accent-amber { background-color: var(--accent-amber); }
+
+/* Subtle accent background tokens */
+.bg-accent-primary-subtle, .bg-accent-indigo-subtle { background-color: var(--accent-primary-subtle); }
+.bg-accent-sky-subtle { background-color: var(--accent-sky-subtle); }
+.bg-accent-mint-subtle { background-color: var(--accent-mint-subtle); }
+.bg-accent-rose-subtle { background-color: var(--accent-rose-subtle); }
+.bg-accent-amber-subtle { background-color: var(--accent-amber-subtle); }
+
+/* Motion utility classes */
+.transition-fast { transition: var(--transition-fast); }
+.transition-normal { transition: var(--transition-normal); }
+.transition-slow { transition: var(--transition-slow); }
+
+/* Typography Utility Classes */
+.text-display-xl {
+  font-size: var(--font-display-xl);
+  line-height: var(--lh-display-xl);
+  letter-spacing: var(--tracking-tight);
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 800;
+}
+
+.text-display {
+  font-size: var(--font-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--tracking-tight);
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 700;
+}
+
+.text-h1, h1 {
+  font-size: var(--font-h1);
+  line-height: var(--lh-h1);
+  letter-spacing: var(--tracking-snug);
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 700;
+}
+
+.text-h2, h2 {
+  font-size: var(--font-h2);
+  line-height: var(--lh-h2);
+  letter-spacing: var(--tracking-snug);
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 600;
+}
+
+.text-h3, h3 {
+  font-size: var(--font-h3);
+  line-height: var(--lh-h3);
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 600;
+}
+
+.text-body-lg {
+  font-size: var(--font-body-lg);
+  line-height: var(--lh-body-lg);
+  font-family: var(--font-sans), sans-serif;
+}
+
+.text-body {
+  font-size: var(--font-body);
+  line-height: var(--lh-body);
+  font-family: var(--font-sans), sans-serif;
+}
+
+.text-body-sm {
+  font-size: var(--font-body-sm);
+  line-height: var(--lh-body-sm);
+  font-family: var(--font-sans), sans-serif;
+}
+
+.text-caption {
+  font-size: var(--font-caption);
+  line-height: var(--lh-caption);
+  font-family: var(--font-sans), sans-serif;
+}
+
+.font-code, code, pre, kbd, samp {
+  font-family: var(--font-mono), monospace !important;
+}
