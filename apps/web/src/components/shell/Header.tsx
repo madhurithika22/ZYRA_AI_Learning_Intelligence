@@ -38,13 +38,13 @@ export function Header({
           <button
             onClick={() => handleTabClick(user ? "overview" : "landing")}
             className="flex items-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary rounded-xl"
-            aria-label="Adaptive Learning Intelligence Home"
+            aria-label="ZYRA Home"
           >
             <div className="h-9 w-9 rounded-xl bg-accent-primary flex items-center justify-center text-white font-extrabold text-sm shadow-xs group-hover:opacity-90 transition-all">
-              A
+              Z
             </div>
             <span className="font-bold text-base sm:text-lg tracking-tight text-primary">
-              Adaptive Learning Intelligence
+              ZYRA
             </span>
           </button>
         </div>
