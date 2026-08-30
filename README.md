@@ -318,8 +318,8 @@ adaptive-learning-ai/
 
 ```bash
 # 1. Clone
-git clone <repository-url>
-cd adaptive-learning-ai
+git clone https://github.com/madhurithika22/ZYRA_AI_Learning_Intelligence.git
+cd ZYRA_AI_Learning_Intelligence
 
 # 2. Start PostgreSQL
 cd infra/postgres
@@ -383,7 +383,7 @@ make web-dev    # Start Next.js dev server
 ### `apps/api/.env`
 
 ```env
-DATABASE_URL=postgresql+asyncpg://adaptive_learning:adaptive_learning_dev@127.0.0.1:5432/adaptive_learning
+DATABASE_URL=postgresql+asyncpg://postgres:Madhu%%21216223@db.wjvizreljylvghqiejnj.supabase.co:5432/postgres
 LLM_PRIMARY_PROVIDER=gemini
 GEMINI_MODEL=gemini-2.5-flash
 GEMINI_API_KEY_1=your_api_key_here
@@ -831,9 +831,6 @@ flowchart LR
 | Conversational AI | ✅ Complete | Grounded, injection-defended |
 | Gamification | ✅ Complete | XP, levels, streaks, badges |
 | Automated tests | ✅ Complete | 18 modules, mock LLM isolation |
-| Database migrations | ✅ Complete | 10 Alembic versions |
-| Production deployment | 🚧 Not included | See deployment recommendations |
-| Seed data CLI | 🚧 Not included | Data directories exist; no loader command |
 
 ---
 
@@ -886,4 +883,4 @@ No license has been specified for this project yet.
 
 ---
 
-*No author information is specified in the project files.*
+**Authors:** Girikannan M P, Madhu Rithika R K, Raj Moorthy
