@@ -3,6 +3,8 @@ export interface AuthUser {
   learner_id: string;
   email: string;
   display_name: string;
+  access_token?: string;
+  token_type?: string;
 }
 
 export interface LearnerAppStateResponse {
