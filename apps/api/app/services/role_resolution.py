@@ -4,6 +4,7 @@ from app.models.role import Role
 from app.schemas.goal_intelligence import ResolvedRoleInfo
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import func
 
 ROLE_ALIASES: dict[str, str] = {
     "ml engineer": "ML Engineer",
@@ -36,7 +37,7 @@ class RoleResolutionService:
         cleaned = re.sub(r"\s+", " ", cleaned)
 
         # 2. Query all roles from database
-        stmt = select(Role)
+        stmt = select(Role).where(func.lower(Role.name) == parsed_role_name.lower().strip())
         result = await self.session.execute(stmt)
         roles = result.scalars().all()
         roles_by_name = {r.name.lower(): r for r in roles}
