@@ -88,8 +88,8 @@ async def register_user(
         key="session_id",
         value=session_token,
         httponly=True,
-        samesite="lax",
-        secure=True,  # Local HTTP development compatibility
+        samesite="none",
+        secure=True,  
         path="/",
         max_age=7 * 24 * 3600,
     )
@@ -135,7 +135,7 @@ async def login_user(
         key="session_id",
         value=session_token,
         httponly=True,
-        samesite="lax",
+        samesite="none",
         secure=True,
         path="/",
         max_age=7 * 24 * 3600,
