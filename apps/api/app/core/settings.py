@@ -1,16 +1,20 @@
-import os
-from pathlib import Path
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
-from dotenv import load_dotenv
 
-# Load .env from apps/api directory or parent
-api_env_path = Path(__file__).resolve().parent.parent.parent / ".env"
-load_dotenv(dotenv_path=api_env_path)
-load_dotenv()
+class Settings(BaseSettings):
+    DATABASE_URL: str
+    SECRET_KEY: str
+    GEMINI_API_KEY_1: str | None = None
+    GEMINI_API_KEY_2: str | None = None
+    GEMINI_API_KEY_3: str | None = None
+    GEMINI_MODEL: str = "gemini-2.5-flash"
+    LLM_PRIMARY_PROVIDER: str = "gemini"
 
-raw_url = os.getenv("DATABASE_URL")
-if not raw_url:
-    raise RuntimeError("DATABASE_URL environment variable is not configured.")
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_ignore_empty=True,
+        extra="ignore",
+    )
 
-DATABASE_URL: str = raw_url
+
 settings = Settings()
