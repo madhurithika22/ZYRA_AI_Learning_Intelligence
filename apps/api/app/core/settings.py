@@ -13,3 +13,4 @@ if not raw_url:
     raise RuntimeError("DATABASE_URL environment variable is not configured.")
 
 DATABASE_URL: str = raw_url
+settings = Settings()
