@@ -9,7 +9,7 @@ from typing import Any
 from cryptography.fernet import Fernet, InvalidToken
 
 # Derive symmetric encryption key from SECRET_KEY environment variable
-_SECRET_RAW = os.getenv("SECRET_KEY", "adaptive-learning-ai-production-secret-key-32bytes!")
+_SECRET_RAW = os.getenv["SECRET_KEY"]
 _DERIVED_KEY = base64.urlsafe_b64encode(hashlib.sha256(_SECRET_RAW.encode("utf-8")).digest())
 _CIPHER = Fernet(_DERIVED_KEY)
 
