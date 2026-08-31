@@ -7,3 +7,4 @@ python-dotenv==1.1.1
 cryptography
 email-validator
 google-genai
+pydantic-settings
