@@ -32,6 +32,8 @@ class AuthUserResponse(BaseModel):
     learner_id: str
     email: str
     display_name: str
+    access_token: str | None = None
+    token_type: str | None = "bearer"
 
 
 @router.post(
@@ -42,7 +44,6 @@ class AuthUserResponse(BaseModel):
 )
 async def register_user(
     payload: RegisterRequest,
-    response: Response,
     session: AsyncSession = Depends(get_db_session),
 ) -> AuthUserResponse:
     """Create a new UserAccount + Learner, authenticate session, and set HttpOnly cookie."""
@@ -84,32 +85,23 @@ async def register_user(
         email=clean_email,
     )
 
-    response.set_cookie(
-        key="session_id",
-        value=session_token,
-        httponly=True,
-        samesite="none",
-        secure=True,  
-        path="/",
-        max_age=7 * 24 * 3600,
-    )
-
     return AuthUserResponse(
         user_id=str(user_account.id),
         learner_id=str(learner.id),
         email=clean_email,
         display_name=user_account.display_name,
+        access_token=session_token,
+        token_type="bearer"
     )
 
 
 @router.post(
     "/login",
     response_model=AuthUserResponse,
-    summary="Authenticate credentials and create session cookie",
+    summary="Authenticate credentials and return token",
 )
 async def login_user(
     payload: LoginRequest,
-    response: Response,
     session: AsyncSession = Depends(get_db_session),
 ) -> AuthUserResponse:
     """Validate email & password. On success, set HttpOnly session cookie."""
@@ -131,31 +123,21 @@ async def login_user(
         email=clean_email,
     )
 
-    response.set_cookie(
-        key="session_id",
-        value=session_token,
-        httponly=True,
-        samesite="none",
-        secure=True,
-        path="/",
-        max_age=7 * 24 * 3600,
-    )
-
     return AuthUserResponse(
         user_id=str(user_account.id),
         learner_id=str(user_account.learner_id),
         email=clean_email,
         display_name=user_account.display_name,
+        access_token=session_token,
+        token_type="bearer"
     )
 
 
 @router.post(
     "/logout",
-    summary="Invalidate session and clear session cookie",
+    summary="Acknowledge logout",
 )
-async def logout_user(response: Response) -> dict[str, str]:
-    """Clear HttpOnly session cookie."""
-    response.delete_cookie(key="session_id", path="/")
+async def logout_user() -> dict[str, str]:
     return {"status": "logged_out"}
 
 
