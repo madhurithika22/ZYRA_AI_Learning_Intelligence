@@ -37,7 +37,7 @@ class RoleResolutionService:
         cleaned = re.sub(r"\s+", " ", cleaned)
 
         # 2. Query all roles from database
-        stmt = select(Role).where(func.lower(Role.name) == cleaned.lower().strip())
+        stmt = select(Role)
         result = await self.session.execute(stmt)
         roles = result.scalars().all()
         roles_by_name = {r.name.lower(): r for r in roles}
