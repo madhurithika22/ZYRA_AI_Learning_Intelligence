@@ -92,7 +92,12 @@ export async function loginUser(email: string, password: string): Promise<AuthUs
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
   });
-  return handleResponse<AuthUser>(res);
+  const data = await handleResponse<AuthUser & { access_token?: string }>(res);
+  if (data.access_token && typeof window !== "undefined") {
+    localStorage.setItem("session_token", data.access_token);
+  }
+  
+  return data;
 }
 
 export async function registerUser(
@@ -109,7 +114,12 @@ export async function registerUser(
       password,
     }),
   });
-  return handleResponse<AuthUser>(res);
+  const data = await handleResponse<AuthUser & { access_token?: string }>(res);
+  if (data.access_token && typeof window !== "undefined") {
+    localStorage.setItem("session_token", data.access_token);
+  }
+  
+  return data;
 }
 
 export async function logoutUser(): Promise<void> {
