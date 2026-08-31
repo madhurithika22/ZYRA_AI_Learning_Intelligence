@@ -25,6 +25,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const checkAuth = useCallback(async (): Promise<AuthUser | null> => {
     setStatus("loading");
     setError(null);
+    
+    // Fast-fail: If no token exists, don't bother pinging the backend
+    const token = typeof window !== "undefined" ? localStorage.getItem("session_token") : null;
+    if (!token) {
+      setUser(null);
+      setStatus("unauthenticated");
+      return null;
+    }
+
     try {
       const currentUser = await fetchCurrentAuthUser();
       if (currentUser) {
@@ -32,6 +41,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setStatus("authenticated");
         return currentUser;
       } else {
+        localStorage.removeItem("session_token");
         setUser(null);
         setStatus("unauthenticated");
         return null;
@@ -45,6 +55,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const setAuthUser = useCallback((newUser: AuthUser | null) => {
+    // Automatically save the token when a user logs in or registers
+    if (newUser?.access_token && typeof window !== "undefined") {
+      localStorage.setItem("session_token", newUser.access_token);
+    }
+    
     setUser(newUser);
     setStatus(newUser ? "authenticated" : "unauthenticated");
     setError(null);
@@ -56,6 +71,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } catch {
       // Ignore network errors during logout
     } finally {
+      // Always clear the local storage token on logout
+      if (typeof window !== "undefined") {
+        localStorage.removeItem("session_token");
+      }
       setUser(null);
       setStatus("unauthenticated");
       setError(null);
@@ -65,6 +84,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     let isMounted = true;
     async function initAuth() {
+      // Fast-fail on initial load if no token exists
+      const token = typeof window !== "undefined" ? localStorage.getItem("session_token") : null;
+      if (!token) {
+        if (isMounted) {
+          setUser(null);
+          setStatus("unauthenticated");
+        }
+        return;
+      }
+
       try {
         const currentUser = await fetchCurrentAuthUser();
         if (!isMounted) return;
@@ -72,6 +101,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           setUser(currentUser);
           setStatus("authenticated");
         } else {
+          localStorage.removeItem("session_token");
           setUser(null);
           setStatus("unauthenticated");
         }
